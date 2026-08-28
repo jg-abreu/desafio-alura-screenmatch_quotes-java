@@ -1,9 +1,12 @@
 package br.com.alura.gerador_de_frases.repository;
 
 import br.com.alura.gerador_de_frases.model.Quote;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-public interface QuoteRepository {
+@Repository
+public interface QuoteRepository extends JpaRepository<Quote, Long> {
 
     @Query(value = "SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
     Quote findRandomQuote();
